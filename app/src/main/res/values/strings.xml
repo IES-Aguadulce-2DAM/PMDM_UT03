@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">PMDM_UT03</string>
+    <string name="fab_add_todo_cd">Botón para añadir tareas</string>
+</resources>
