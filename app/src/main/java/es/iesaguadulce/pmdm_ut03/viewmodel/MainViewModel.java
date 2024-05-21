@@ -1,6 +1,7 @@
 package es.iesaguadulce.pmdm_ut03.viewmodel;
 
 import android.app.Application;
+import android.util.Log;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 import es.iesaguadulce.pmdm_ut03.model.ToDo;
@@ -34,6 +35,8 @@ public class MainViewModel extends AndroidViewModel {
     }
 
     public void update(ToDo toDo) {
+        Log.d("MainViewModel",
+              "toDo: " + toDo.getTitle() + ". Aún no me han hecho el código, estoy esperando que el alumno lo escriba.");
         /*repository.update(toDo, new ToDoRepository.OnOperationCallback() {
             @Override
             public void onOperation() {

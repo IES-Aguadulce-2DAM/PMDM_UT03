@@ -79,7 +79,9 @@ public class MainActivity extends AppCompatActivity implements ToDoAdapter.OnDel
     }
 
     @Override
-    public void onUpdate(int position) {
-        viewModel.update(adapter.getToDoList().get(position));
+    public void onUpdate(int position, boolean checked) {
+        ToDo toDo = adapter.getToDoList().get(position);
+        toDo.setDone(checked);
+        viewModel.update(toDo);
     }
 }

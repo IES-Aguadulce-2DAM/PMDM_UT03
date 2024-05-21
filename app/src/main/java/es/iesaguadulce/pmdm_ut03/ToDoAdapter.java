@@ -6,6 +6,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,7 +21,7 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ToDoViewHolder
     private OnDeleteListener listener;
 
     public interface OnDeleteListener {
-        void onUpdate(int position);
+        void onUpdate(int position, boolean checked);
     }
 
     public ToDoAdapter(Context context, OnDeleteListener listener) {
@@ -60,7 +61,7 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ToDoViewHolder
         return 0;
     }
 
-    public class ToDoViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class ToDoViewHolder extends RecyclerView.ViewHolder implements CompoundButton.OnCheckedChangeListener {
 
         protected TextView tvTitle;
         protected TextView tvDescription;
@@ -71,11 +72,12 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ToDoViewHolder
             tvTitle = itemView.findViewById(R.id.todo_title);
             tvDescription = itemView.findViewById(R.id.todo_description);
             cbStatus = itemView.findViewById(R.id.todo_status);
+            cbStatus.setOnCheckedChangeListener(this);
         }
 
         @Override
-        public void onClick(View v) {
-            listener.onUpdate(getAdapterPosition());
+        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+            listener.onUpdate(getAdapterPosition(), isChecked);
         }
     }
 }
